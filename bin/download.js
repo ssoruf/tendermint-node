@@ -12,7 +12,7 @@ const { homedir } = require('os')
 const { join, dirname } = require('path')
 const { get } = require('axios')
 const ProgressBar = require('progress')
-const unzip = require('unzipper').Parse
+const unzip = require('tar').x
 const mkdirp = require('mkdirp').sync
 
 let versionPath = join(__dirname, 'version')
@@ -111,9 +111,10 @@ function getBinaryDownloadURL (version) {
     'win32': 'windows'
   }
   let arches = {
-    'x64': 'amd64'
+    'x64': 'amd64',
+    'arm64': 'arm64'
   }
   let platform = platforms[process.platform]
   let arch = arches[process.arch]
-  return `https://github.com/tendermint/tendermint/releases/download/v${version}/tendermint_v${version}_${platform}_${arch}.zip`
+  return `https://github.com/tendermint/tendermint/releases/download/v${version}/tendermint_${version}_${platform}_${arch}.tar.gz`
 }

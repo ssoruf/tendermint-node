@@ -154,8 +154,8 @@ function sleep (ms) {
 module.exports = {
   node,
   lite,
-  init: (home) => exec('init', { home }),
-  initSync: (home) => exec('init', { home }, true),
+  init: (home) => exec('init validator', { home }),
+  initSync: (home) => exec('init validator', { home }, true),
   version: () => exec('version', {}, true).stdout,
   genValidator: () => exec('gen_validator', {}, true).stdout
 }
